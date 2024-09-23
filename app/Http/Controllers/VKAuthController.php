@@ -5,18 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite as FacadesSocialite;
+use Laravel\Socialite\Facades\Socialite;
 
 class VKAuthController extends Controller
 {
     public function redirectToProvider()
     {
-        return FacadesSocialite::driver('vkontakte')->redirect();
+        return Socialite::driver('vkontakte')->redirect();
     }
 
     public function handleProviderCallback()
 {
-    $user = FacadesSocialite::driver('vkontakte')->user();
+    $user = Socialite::driver('vkontakte')->user();
 
     // Найдите пользователя в базе данных
     $authUser = User::where('vk_id', $user->getId())->first();
