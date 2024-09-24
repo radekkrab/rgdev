@@ -77,7 +77,7 @@ function handleImageError() {
                             <div
                                 class="bg-white bg-opacity-5 backdrop-blur-sm lg:flex-grow md:w-1/2 lg:pl-14 lg:pr-4 lg:py-5 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center rounded-xl" style="box-shadow: 0 0 3px 2px #0ea5e9;">
                                 <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Предоставляем<br class="hidden lg:inline-block">
-                                    следующие IT услуги
+                                    следующие IT услуги:
                                 </h1>
                                 <p class="mb-3 leading-relaxed">Создание и поддержка веб-сайтов и веб-приложений.</p>
                                 <p class="mb-3 leading-relaxed">Уроки по востребованным дисциплинам в области IT, включая программирование, базы данных, кибербезопасность. </p>
