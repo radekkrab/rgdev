@@ -42,5 +42,8 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
         run: |
-          ssh-keyscan -H $SERVER_IP >> /.ssh/known_hosts
-          ssh -i private_key.pem $SERVER_USER@$SERVER_IP "cd /www/xn--b1agaam4abxqe.xn--p1ai && git pull origin main && composer install --no-dev && php artisan migrate --force"
+           mkdir -p ~/.ssh  # Создаем директорию .ssh, если она не существует
+           echo "$SSH_PRIVATE_KEY" > private_key.pem
+           chmod 400 private_key.pem
+           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+           ssh -i private_key.pem $SERVER_USER@$SERVER_IP "cd /www/xn--b1agaam4abxqe.xn--p1ai && git pull origin main && composer install --no-dev && php artisan migrate --force"
