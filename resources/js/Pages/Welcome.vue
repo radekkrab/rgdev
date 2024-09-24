@@ -33,11 +33,11 @@ function handleImageError() {
     <div class="h-full bg-cover bg-center"
         style="background-image: url('storage/img/welcome-bg.jpg'); background-attachment: fixed;">
         <div
-            class="container mx-auto min-h-screen flex  items-center justify-center selection:bg-[#FF2D20] selection:text-white">
-            <div class="max-w-2xl lg:max-w-6xl">
-                <div class="flex md:justify-center justify-stretch mx-auto pt-10 lg:pt-6 items-center gap-2">
+            class="container w-11/12 mx-auto min-h-screen flex  items-center justify-center">
+            <div class="lg:max-w-6xl">
+                <div class="flex md:justify-center justify-stretch mx-auto pt-4 items-center gap-2">
                     <img src="storage/img/logo.png" class="w-11 rounded-lg" style="box-shadow: 0 0 3px 2px #0ea5e9;">
-                    <div class="bg-white bg-opacity-5 backdrop-blur-sm rounded-lg px-2 pt-2 hover:bg-black"
+                    <div class="bg-white hidden sm:block bg-opacity-5 backdrop-blur-sm rounded-lg px-2 pt-2 hover:bg-black"
                         style="box-shadow: 0 0 3px 2px #0ea5e9;">
                         <h1 class="title-font lg:font-bold text-lg mb-2 text-white"
                             style="text-shadow: 2px 2px 20px #0ea5e9;">
@@ -69,13 +69,13 @@ function handleImageError() {
                 </div>
                 <main>
                     <section class="text-white body-font">
-                        <div class="container mx-auto flex gap-4 lg:py-12 md:flex-row flex-col items-center">
-                            <div class="lg:max-w-xl lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+                        <div class="container mx-auto flex gap-6 pt-7 lg:py-12 md:flex-row flex-col items-center">
+                            <div class="lg:max-w-xl lg:w-full md:w-1/2 md:mb-0">
                                 <img class="object-cover w-full h-full rounded-xl" alt="hero"
                                     src="storage/img/welcome.png">
                             </div>
                             <div
-                                class="bg-white bg-opacity-5 backdrop-blur-sm lg:flex-grow md:w-1/2 lg:pl-14 lg:pr-4 lg:py-5 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center rounded-xl" style="box-shadow: 0 0 3px 2px #0ea5e9;">
+                                class="bg-white bg-opacity-5 backdrop-blur-sm lg:flex-grow md:w-1/2 py-2 px-2 lg:pl-14 lg:pr-4 lg:py-5 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center rounded-xl" style="box-shadow: 0 0 3px 2px #0ea5e9;">
                                 <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Предоставляем<br class="hidden lg:inline-block">
                                     следующие IT услуги
                                 </h1>
@@ -84,7 +84,7 @@ function handleImageError() {
                                 <p class="mb-3 leading-relaxed">Консультации и поддержка: пользователи могут получить помощь по вопросам настройки оборудования, программного обеспечения и других IT-проблем.</p>
                                 <div>
                                     <button
-                                        class="inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Бесплатная консультация</button>
+                                        class="inline-flex text-gray-700 bg-gray-100 border-0 mb-2 py-4 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Бесплатная консультация</button>
                                 </div>
                             </div>
                         </div>
@@ -93,9 +93,9 @@ function handleImageError() {
 
                 <footer>
                     <!-- Футер -->
-                    <div class="container px-4 lg:pt-8 mx-auto lg:max-w-6xl">
+                    <div class="container px-4 py-8 lg:pt-8 mx-auto lg:max-w-6xl">
                         <div class="grid gap-10 row-gap-6 lg:mb-6 justify-items-center sm:grid-cols-2 lg:grid-cols-4">
-                            <div class="lg:text-left">
+                            <div class="lg:text-left text-center">
                                 <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
                                     <span class="text-xl font-bold tracking-wide leading-5 text-white">RG
                                         Development</span>
@@ -111,28 +111,28 @@ function handleImageError() {
                                 </div>
                             </div>
                             <div class="text-center justify-self-center md:justify-self-start">
-                                <p class="font-semibold mr-5 sm:tracking-wide text-white">Меню</p>
+                                <p class="font-semibold md:mr-5 sm:tracking-wide text-white">Меню</p>
                                 <ul class="mt-1 text-white">
-                                    <li><a class="mr-5 hover:text-sky-500" href="#prices">Войти</a></li>
-                                    <li><a class="mr-5 hover:text-sky-500" href="#contacts">Зарегистрироваться</a></li>
-                                    <li><a class="mr-5 hover:text-sky-500" href="#getsite">Бесплатная консультация</a>
+                                    <li><a class="md:mr-5 hover:text-sky-500" href="#prices">Войти</a></li>
+                                    <li><a class="md:mr-5 hover:text-sky-500" href="#contacts">Зарегистрироваться</a></li>
+                                    <li><a class="md:mr-5 hover:text-sky-500" href="#getsite">Бесплатная консультация</a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="space-y-2 text-center text-sm">
                                 <p class="text-base font-bold tracking-wide text-white">Контакты</p>
                                 <div class="flex">
-                                    <p class="mr-1 text-white">Телефон:</p>
+                                    <p class="md:mr-1 text-white">Телефон:</p>
                                     <a href="tel:89195365056" aria-label="Our phone" title="Our phone"
                                         class="transition-colors duration-300 text-white hover:text-sky-500">89195365056</a>
                                 </div>
                                 <div class="flex">
-                                    <p class="mr-1 text-white">Email:</p>
+                                    <p class="md:mr-1 text-white">Email:</p>
                                     <a href="mailto:radxxx7@mail.ru" aria-label="Our email" title="Our email"
                                         class="transition-colors duration-300 text-white hover:text-sky-500">radxxx7@mail.ru</a>
                                 </div>
                                 <div class="flex">
-                                    <p class="mr-1 text-white">Адрес:</p>
+                                    <p class="md:mr-1 text-white">Адрес:</p>
                                     <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer"
                                         aria-label="Our address" title="Our address"
                                         class="transition-colors duration-300 text-white hover:text-sky-500">
@@ -143,7 +143,7 @@ function handleImageError() {
                             <div class="text-center">
                                 <span class="text-base font-bold tracking-wide text-white">Социальные сети</span>
                                 <div class="flex items-center justify-center mt-3 space-x-3">
-                                    <a class="mx-1.5 text-white transition-colors duration-300 transform hover:text-green-500"
+                                    <a class="text-white transition-colors duration-300 transform hover:text-green-500"
                                         href="https://wa.me/79195365056">
                                         <svg class="w-8 h-8" id="Capa_1" style="enable-background:new 0 0 58 58;"
                                             version="1.1" viewBox="0 0 58 58" xml:space="preserve"
@@ -175,7 +175,7 @@ function handleImageError() {
                                         </svg>
                                     </a>
 
-                                    <a class="mx-1.5 text-white transition-colors duration-300 transform hover:text-blue-500"
+                                    <a class=" text-white transition-colors duration-300 transform hover:text-blue-500"
                                         href="https://vk.com/radevc">
                                         <svg width="34" height="34" viewBox="0 0 48 48" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -189,7 +189,7 @@ function handleImageError() {
 
                                     </a>
 
-                                    <a class="mx-1.5 text-white transition-colors duration-300 transform hover:text-blue-500"
+                                    <a class=" text-white transition-colors duration-300 transform hover:text-blue-500"
                                         href="https://t.me/loki777i">
                                         <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" aria-label="Telegram"
                                             role="img" viewBox="0 0 512 512">
@@ -207,7 +207,7 @@ function handleImageError() {
                             </div>
                         </div>
                         <div
-                            class="flex flex-col-reverse justify-between items-center md:items-center pt-5 lg:pb-5 border-t lg:flex-row">
+                            class="flex flex-col-reverse justify-between items-center md:items-center pt-4 mt-4 lg:pb-5 border-t lg:flex-row">
                             <p class="text-sm text-white text-center md:text-center">
                                 © Copyright 2024 RG Inc. All rights reserved.
                             </p>
