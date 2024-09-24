@@ -56,4 +56,4 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
           rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ $SERVER_USER@$SERVER_IP:www/xn--b1agaam4abxqe.xn--p1ai
-          ssh -i private_key -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd www/xn--b1agaam4abxqe.xn--p1ai && git pull origin main && php artisan migrate --force"
+          ssh -i private_key -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd www/xn--b1agaam4abxqe.xn--p1ai && git pull origin main && npm run build && php artisan migrate --force"
