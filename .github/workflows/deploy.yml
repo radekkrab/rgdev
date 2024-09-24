@@ -38,7 +38,6 @@ jobs:
 
       - name: Deploy to server
         env:
-        secrets:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
