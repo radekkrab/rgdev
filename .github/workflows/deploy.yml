@@ -48,11 +48,12 @@ jobs:
         run: php artisan migrate --force
 
       - name: Deploy to server via SSH
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SERVER_IP: ${{ secrets.SERVER_IP }}
-          SERVER_USER: ${{ secrets.SERVER_USER }}
-        run: |
-          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ $SERVER_USER@$SERVER_IP:www/xn--b1agaam4abxqe.xn--p1ai
-          ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd www/xn--b1agaam4abxqe.xn--p1ai && git pull origin main && npm run build && php artisan migrate --force"
+  env:
+    SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+    SERVER_IP: ${{ secrets.SERVER_IP }}
+    SERVER_USER: ${{ secrets.SERVER_USER }}
+  run: |
+    echo "$SSH_PRIVATE_KEY" > private_key
+    chmod 600 private_key
+    rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ $SERVER_USER@$SERVER_IP:www/xn--b1agaam4abxqe.xn--p1ai
+    ssh -i private_key -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd www/xn--b1agaam4abxqe.xn--p1ai && git pull origin main && npm run build && php artisan migrate --force"
