@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@v3
         with:
           php-version: '8.3'  
           extensions: mbstring, xml, bcmath, mysql, gd
@@ -33,10 +33,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@v3
         with:
           php-version: '8.3'  
           extensions: mbstring, xml, bcmath, curl
@@ -53,7 +53,6 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
         run: |
-          echo "$SSH_PRIVATE_KEY" > private_key
-          chmod 600 private_key
-          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ $SERVER_USER@$SERVER_IP:www/xn--b1agaam4abxqe.xn--p1ai
-          ssh -i private_key -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd www/xn--b1agaam4abxqe.xn--p1ai && git pull origin main && npm run build && php artisan migrate --force"
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ $SERVER_USER@$SERVER_IP:www/xn--b1agaam4abxqe.xn--p1ai
+          ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd www/xn--b1agaam4abxqe.xn--p1ai && git pull origin main && npm run build && php artisan migrate --force"
