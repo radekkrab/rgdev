@@ -1,5 +1,8 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import MenuBurger from '@/Components/MenuBurger.vue';
+import Soglasie from '@/Components/Soglasie.vue';
+import Politica from '@/Components/Politica.vue';
 
 defineProps({
     canLogin: {
@@ -35,7 +38,7 @@ function handleImageError() {
         <div
             class="container w-11/12 mx-auto min-h-screen flex  items-center justify-center">
             <div class="lg:max-w-6xl">
-                <div class="flex md:justify-center justify-stretch mx-auto pt-4 items-center gap-2">
+                <div class="flex justify-stretch mx-auto pt-4 items-center gap-2">
                     <img src="storage/img/logo.png" class="w-11 rounded-lg" style="box-shadow: 0 0 3px 2px #0ea5e9;">
                     <div class="bg-white hidden sm:block bg-opacity-5 backdrop-blur-sm rounded-lg px-2 pt-2 hover:bg-black"
                         style="box-shadow: 0 0 3px 2px #0ea5e9;">
@@ -44,7 +47,7 @@ function handleImageError() {
                             RG Development
                         </h1>
                     </div>
-                    <nav v-if="canLogin" class="flex flex-1 justify-end">
+                    <nav v-if="canLogin" class="hidden flex-1 justify-end lg:flex">
                         <Link v-if="$page.props.auth.user" :href="route('dashboard')"
                             class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] border-2 border-sky-700"
                             style="box-shadow: 0 0 3px 2px #0ea5e9;">
@@ -66,16 +69,17 @@ function handleImageError() {
                             </Link>
                         </template>
                     </nav>
+                    <MenuBurger class="ml-auto" />
                 </div>
                 <main>
                     <section class="text-white body-font">
-                        <div class="container mx-auto flex gap-6 pt-7 lg:py-12 md:flex-row flex-col items-center">
-                            <div class="lg:max-w-xl lg:w-full md:w-1/2 md:mb-0">
+                        <div class="container mx-auto flex gap-6 pt-7 lg:py-12 lg:flex-row flex-col items-center">
+                            <div class="lg:max-w-xl w-full">
                                 <img class="object-cover w-full h-full rounded-xl" alt="hero"
                                     src="storage/img/welcome.png">
                             </div>
                             <div
-                                class="bg-white bg-opacity-5 backdrop-blur-sm lg:flex-grow md:w-1/2 py-2 px-2 lg:pl-14 lg:pr-4 lg:py-5 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center rounded-xl" style="box-shadow: 0 0 3px 2px #0ea5e9;">
+                                class="bg-white bg-opacity-5 backdrop-blur-sm lg:flex-grow py-2 px-2 lg:pl-14 lg:pr-4 md:pl-16 flex flex-col lg:items-start md:text-left items-center text-center rounded-xl" style="box-shadow: 0 0 3px 2px #0ea5e9;">
                                 <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Предоставляем<br class="hidden lg:inline-block">
                                     следующие IT услуги
                                 </h1>
@@ -84,7 +88,7 @@ function handleImageError() {
                                 <p class="mb-3 leading-relaxed">Консультации и поддержка: пользователи могут получить помощь по вопросам настройки оборудования, программного обеспечения и других IT-проблем.</p>
                                 <div>
                                     <button
-                                        class="inline-flex text-gray-700 bg-gray-100 border-0 mb-2 py-4 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Бесплатная консультация</button>
+                                        class="inline-flex text-black font-semibold bg-gray-100 border-0 mb-2 py-4 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Бесплатная консультация</button>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +114,7 @@ function handleImageError() {
                                     </p>
                                 </div>
                             </div>
-                            <div class="text-center justify-self-center md:justify-self-start">
+                            <div class="text-center justify-self-center">
                                 <p class="font-semibold md:mr-5 sm:tracking-wide text-white">Меню</p>
                                 <ul class="mt-1 text-white">
                                     <li><a class="md:mr-5 hover:text-sky-500" href="#prices">Войти</a></li>
@@ -214,14 +218,10 @@ function handleImageError() {
                             <ul
                                 class="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row md:self-center text-center">
                                 <li>
-                                    <a href="policy.html"
-                                        class="text-sm text-white transition-colors duration-300 hover:text-deep-purple-accent-400">Политика
-                                        обработки персональных данных</a>
+                                    <Politica />
                                 </li>
                                 <li>
-                                    <span id="agree2"
-                                        class="cursor-pointer text-sm text-white transition-colors duration-300 hover:text-deep-purple-accent-400">Согласие
-                                        на обработку персональных данных</span>
+                                    <Soglasie />
                                 </li>
                             </ul>
                         </div>
