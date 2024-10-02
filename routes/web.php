@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VKAuthController;
 use Illuminate\Foundation\Application;
@@ -13,7 +14,9 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
+
+Route::post('/send', [MailController::class, 'send']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
