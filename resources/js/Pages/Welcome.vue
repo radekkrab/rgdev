@@ -3,6 +3,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import MenuBurger from '@/Components/MenuBurger.vue';
 import Soglasie from '@/Components/Soglasie.vue';
 import Politica from '@/Components/Politica.vue';
+import FeedbackForm from '@/Components/FeedbackForm.vue';
 
 defineProps({
     canLogin: {
@@ -87,8 +88,7 @@ function handleImageError() {
                                 <p class="mb-3 leading-relaxed">Уроки по востребованным дисциплинам в области IT, включая программирование, базы данных, кибербезопасность. </p>
                                 <p class="mb-3 leading-relaxed">Консультации и поддержка: пользователи могут получить помощь по вопросам настройки оборудования, программного обеспечения и других IT-проблем.</p>
                                 <div>
-                                    <button
-                                        class="inline-flex text-black font-semibold bg-gray-100 border-0 mb-2 py-4 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Бесплатная консультация</button>
+                                    <FeedbackForm />
                                 </div>
                             </div>
                         </div>

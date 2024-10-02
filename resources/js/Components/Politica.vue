@@ -9,7 +9,7 @@ const toggleAgreement = () => {
 </script>
 
 <template>
-    <span @click="toggleAgreement" class="cursor-pointer text-sm text-white transition-colors duration-300 hover:text-deep-purple-accent-400">Политика обработки персональных данных</span>
+    <span @click="toggleAgreement" class="cursor-pointer text-sm transition-colors duration-300 hover:text-deep-purple-accent-400">Политика обработки персональных данных</span>
     <div class="bg-white text-center font-ptser fixed overflow-auto z-40 inset-x-0 inset-y-0 w-full h-screen pt-10 px-5 transition-all duration-300 ease-in-out"
         v-if="isOpen">
         <div id="nav-icon-close2" class="text-4xl bg-white w-full h-full">
