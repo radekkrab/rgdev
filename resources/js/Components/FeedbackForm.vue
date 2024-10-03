@@ -58,6 +58,10 @@ function submit() {
     });
 }
 
+function onCaptchaSuccess(captchaToken) {
+    token.value = captchaToken; 
+}
+
 </script>
 
 <template>
@@ -95,7 +99,7 @@ function submit() {
                             </textarea>
                         <div v-if="form.errors.message">{{ form.errors.message }}</div>
                     </div>
-                    <YSmartCaptcha v-model="token" />
+                    <YSmartCaptcha v-model="token" @success="onCaptchaSuccess"/>
                     <div class="flex justify-center gap-1 items-center my-2 mx-4 text-gray-500">
                         <input type="checkbox" id="policy" class="w-8 h-8" required v-model="form.policy">
                         <p class="text-sm text-gray-500 text-justify">Нажимая кнопку «Отправить», я даю свое
