@@ -13,24 +13,6 @@ let modal2Message = ref('');
 
 const token = ref('');
 
-onMounted(() => {
-    const script = document.createElement('script');
-    script.src = "https://smartcaptcha.yandexcloud.net/captcha.js";
-    script.defer = true;
-    script.onload = () => {
-        // Инициализация капчи после загрузки скрипта
-        window.YaSmartCaptcha.init({
-            container: 'captcha-container',
-            onSuccess: (response) => {
-                token.value = response.token; // Сохраните токен для дальнейшего использования
-            },
-            onError: (error) => {
-                console.error('Ошибка капчи:', error);
-            }
-        });
-    };
-    document.head.appendChild(script);
-});
 const form = useForm({
     name: null,
     phone: null,
@@ -42,6 +24,12 @@ const form = useForm({
 })
 
 function submit() {
+    if (!token.value) {
+        modal2Message.value = 'Пожалуйста пройдите капчу.';
+        showModal2.value = true;
+        return;
+    }
+
     form.processing = true; 
     form.progress = { percentage: 0 };
 
@@ -107,9 +95,7 @@ function submit() {
                             </textarea>
                         <div v-if="form.errors.message">{{ form.errors.message }}</div>
                     </div>
-                    <div style="height: 100px" id="captcha-container" class="smart-captcha mx-4"
-                        data-sitekey="ysc1_UGyu2VEAUNmKNkVxhCRglKu4uKRkePefKMDJB99g5406b6b9">
-                    </div>
+                    <YSmartCaptcha v-model="token" />
                     <div class="flex justify-center gap-1 items-center my-2 mx-4 text-gray-500">
                         <input type="checkbox" id="policy" class="w-8 h-8" required v-model="form.policy">
                         <p class="text-sm text-gray-500 text-justify">Нажимая кнопку «Отправить», я даю свое
