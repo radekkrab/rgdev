@@ -107,7 +107,7 @@ function onCaptchaSuccess(captchaToken) {
                             обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006
                             года
                             №152-ФЗ
-                            «О персональных данных» и <span id="agree"
+                            «О персональных данных» и <span
                                 class="cursor-pointer font-semibold text-blue-500">
                                 <Soglasie />
                             </span>.

@@ -4,6 +4,7 @@ import MenuBurger from '@/Components/MenuBurger.vue';
 import Soglasie from '@/Components/Soglasie.vue';
 import Politica from '@/Components/Politica.vue';
 import FeedbackForm from '@/Components/FeedbackForm.vue';
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 defineProps({
     canLogin: {
@@ -36,11 +37,10 @@ function handleImageError() {
 
     <div class="h-full bg-cover bg-center"
         style="background-image: url('storage/img/welcome-bg.jpg'); background-attachment: fixed;">
-        <div
-            class="container w-11/12 mx-auto min-h-screen flex  items-center justify-center">
+        <div class="container w-11/12 mx-auto min-h-screen flex  items-center justify-center">
             <div class="lg:max-w-6xl">
                 <div class="flex justify-stretch mx-auto pt-4 items-center gap-2">
-                    <img src="storage/img/logo.png" class="w-11 rounded-lg" style="box-shadow: 0 0 3px 2px #0ea5e9;">
+                    <ApplicationLogo />
                     <div class="bg-white hidden sm:block bg-opacity-5 backdrop-blur-sm rounded-lg px-2 pt-2 hover:bg-black"
                         style="box-shadow: 0 0 3px 2px #0ea5e9;">
                         <h1 class="title-font lg:font-bold text-lg mb-2 text-white"
@@ -79,14 +79,19 @@ function handleImageError() {
                                 <img class="object-cover w-full h-full rounded-xl" alt="hero"
                                     src="storage/img/welcome.png">
                             </div>
-                            <div
-                                class="bg-white bg-opacity-5 backdrop-blur-sm lg:flex-grow py-2 px-2 lg:pl-14 lg:pr-4 md:pl-16 flex flex-col lg:items-start md:text-left items-center text-center rounded-xl" style="box-shadow: 0 0 3px 2px #0ea5e9;">
-                                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Предоставляем<br class="hidden lg:inline-block">
+                            <div class="bg-white bg-opacity-5 backdrop-blur-sm lg:flex-grow py-2 px-2 lg:pl-14 lg:pr-4 md:pl-16 flex flex-col lg:items-start md:text-left items-center text-center rounded-xl"
+                                style="box-shadow: 0 0 3px 2px #0ea5e9;">
+                                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Предоставляем<br
+                                        class="hidden lg:inline-block">
                                     следующие IT услуги
                                 </h1>
                                 <p class="mb-3 leading-relaxed">Создание и поддержка веб-сайтов и веб-приложений.</p>
-                                <p class="mb-3 leading-relaxed">Уроки по востребованным дисциплинам в области IT, включая программирование, базы данных, кибербезопасность. </p>
-                                <p class="mb-3 leading-relaxed">Консультации и поддержка: пользователи могут получить помощь по вопросам настройки оборудования, программного обеспечения и других IT-проблем.</p>
+                                <p class="mb-3 leading-relaxed">Уроки по востребованным дисциплинам в области IT,
+                                    включая
+                                    программирование, базы данных, кибербезопасность. </p>
+                                <p class="mb-3 leading-relaxed">Консультации и поддержка: пользователи могут получить
+                                    помощь по вопросам
+                                    настройки оборудования, программного обеспечения и других IT-проблем.</p>
                                 <div>
                                     <FeedbackForm />
                                 </div>
@@ -118,8 +123,10 @@ function handleImageError() {
                                 <p class="font-semibold md:mr-5 sm:tracking-wide text-white">Меню</p>
                                 <ul class="mt-1 text-white">
                                     <li><a class="md:mr-5 hover:text-sky-500" href="#prices">Войти</a></li>
-                                    <li><a class="md:mr-5 hover:text-sky-500" href="#contacts">Зарегистрироваться</a></li>
-                                    <li><a class="md:mr-5 hover:text-sky-500" href="#getsite">Бесплатная консультация</a>
+                                    <li><a class="md:mr-5 hover:text-sky-500" href="#contacts">Зарегистрироваться</a>
+                                    </li>
+                                    <li><a class="md:mr-5 hover:text-sky-500" href="#getsite">Бесплатная
+                                            консультация</a>
                                     </li>
                                 </ul>
                             </div>
@@ -218,10 +225,14 @@ function handleImageError() {
                             <ul
                                 class="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row md:self-center text-center">
                                 <li>
-                                    <Politica />
+                                    <span class="cursor-pointer font-semibold text-blue-500">
+                                        <Politica />
+                                    </span>
                                 </li>
                                 <li>
-                                    <Soglasie />
+                                    <span class="cursor-pointer font-semibold text-blue-500">
+                                        <Soglasie />
+                                    </span>
                                 </li>
                             </ul>
                         </div>
