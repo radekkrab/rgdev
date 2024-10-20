@@ -8,12 +8,12 @@ import EducationLayout from '@/Layouts/EducationLayout.vue';
     <Head title="RG Education" />
     <EducationLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Принципы Solid</h2>
-            <Link :href="route('education')" class="bg-gray-400 text-white px-3 rounded-md">Вернуться</Link>
+            <h2 class="font-semibold text-xl self-center text-gray-800 dark:text-gray-200 leading-tight">Принципы Solid</h2>
+            <Link :href="route('education')" class="bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded-2xl">Вернуться</Link>
         </template>
-        <div class="max-w-7xl text-sm mx-auto sm:px-6 lg:px-8 flex flex-wrap">
+        <div class="max-w-7xl text-sm mx-auto sm:px-6 lg:px-8 flex flex-wrap dark:bg-black">
             <div
-                class="bg-white overflow-hidden shadow-sm sm:rounded-lg m-2 border-2 border-gray-200 text-gray-900 p-4">
+                class="bg-white dark:bg-black dark:text-gray-200 overflow-hidden shadow-sm sm:rounded-lg m-2 border-2 border-gray-200 dark:border-gray-700 text-gray-900 p-4">
                 <p class="text-justify">
                     Предположим, у нас есть класс <b>User</b>, который отвечает как за обработку данных пользователя, так и за
                     отправку

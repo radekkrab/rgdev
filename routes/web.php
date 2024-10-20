@@ -36,7 +36,7 @@ Route::get('/education', function () {
     return Inertia::render('Education');
 })->name('education');
 
-Route::get('/education/{page}', function ($page) {
+Route::get('/{page}', function ($page) {
     // Проверяем, существует ли представление
     // if (!view()->exists("Education/$page")) {
     //     abort(404);
