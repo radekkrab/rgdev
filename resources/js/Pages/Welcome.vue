@@ -49,15 +49,15 @@ function handleImageError() {
                         </h1>
                     </div>
                     <nav v-if="canLogin" class="hidden flex-1 justify-end lg:flex">
-                        <Link v-if="$page.props.auth.user" :href="route('dashboard')"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] border-2 border-sky-700"
+                        <Link v-if="$page.props.auth.user" :href="'/rg'"
+                            class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] border-2 border-sky-700"
                             style="box-shadow: 0 0 3px 2px #0ea5e9;">
-                        Dashboard
+                        Личный кабинет
                         </Link>
 
                         <template v-else>
 
-                            <Link :href="route('login')"
+                            <Link :href="'/rg/login'"
                                 class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md py-2 px-3 focus:outline-none hover:bg-black rounded text-sm"
                                 style="box-shadow: 0 0 3px 2px #0ea5e9;">
                             Войти

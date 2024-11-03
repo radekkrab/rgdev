@@ -27,7 +27,7 @@ const closeMenu = () => {
             <ul v-if="isOpen"
                 class="pointer-events-auto bg-black/80 text-center text-white text-2xl flex flex-col gap-4 items-center font-medium fixed z-10 inset-x-0 inset-y-0 w-full h-full pt-40">
                 <li @click="closeMenu">
-                    <Link :href="route('login')"
+                    <Link :href="'/rg/login'"
                         class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
                         style="box-shadow: 0 0 3px 2px #0ea5e9;">
                     Войти
