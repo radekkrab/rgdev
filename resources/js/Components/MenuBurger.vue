@@ -41,7 +41,7 @@ const closeMenu = () => {
                     </Link>
                 </li>
                 <li @click="closeMenu">
-                    <Link :href="route('education')"
+                    <Link :href="`/topics`"
                         class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
                         style="box-shadow: 0 0 3px 2px #0ea5e9;">
                     IT заметки
