@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\ItNoteResource\Pages;
+namespace App\Filament\Resources\TopicResource\Pages;
 
-use App\Filament\Resources\ItNoteResource;
+use App\Filament\Resources\TopicResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListItNotes extends ListRecords
+class ListTopics extends ListRecords
 {
-    protected static string $resource = ItNoteResource::class;
+    protected static string $resource = TopicResource::class;
 
     protected function getHeaderActions(): array
     {
