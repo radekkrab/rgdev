@@ -42,9 +42,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --optimize-autoloader
 
-      - name: Run migrations
-        run: php artisan migrate --force
-
       - name: Deploy to server via SSH
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
