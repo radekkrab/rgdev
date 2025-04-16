@@ -11,7 +11,7 @@ const toggleAgreement = () => {
 <template>
     <span @click="toggleAgreement" class="cursor-pointer text-sm transition-colors duration-300 hover:text-deep-purple-accent-400">Согласие
         на обработку персональных данных</span>
-    <div class="bg-white text-center font-ptser fixed overflow-auto z-40 inset-x-0 inset-y-0 w-full h-screen pt-10 px-5 transition-all duration-300 ease-in-out"
+    <div class="bg-white text-black text-center font-ptser fixed overflow-auto z-40 inset-x-0 inset-y-0 w-full h-screen pt-10 px-5 transition-all duration-300 ease-in-out"
         v-if="isOpen">
         <div id="nav-icon-close2" class="text-4xl bg-white w-full h-full">
             <svg @click="toggleAgreement" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 ml-auto mr-6 cursor-pointer"
