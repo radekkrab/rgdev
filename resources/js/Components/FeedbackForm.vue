@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, nextTick } from 'vue';
+import { ref, nextTick } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
 
@@ -17,13 +17,26 @@ const form = useForm({
     progress: null,
 });
 
-onMounted(() => {
+function openModal() {
+    showModal.value = true;
+    nextTick(() => {
+        loadCaptcha(); // Загружаем капчу после открытия модального окна
+    });
+}
+
+function closeModal() {
+    showModal.value = false;
+    token.value = ''; // Сбрасываем токен при закрытии модального окна
+}
+
+function loadCaptcha() {
     const script = document.createElement('script');
     script.src = 'https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction';
     script.defer = true;
     document.head.appendChild(script);
+    // Устанавливаем функцию onloadFunction как глобальную
     window.onloadFunction = onloadFunction;
-});
+}
 
 function onloadFunction() {
     console.log('Капча загружена'); // Для отладки
@@ -33,11 +46,16 @@ function onloadFunction() {
             return;
         }
 
-        window.smartCaptcha.render('captcha-container', {
-            sitekey: 'ysc1_hBWstkOuWJkV2PhLP3p4Y6c4Yg9PJh2KOsclXACWc0871987',
-            invisible: true,
-            callback: onCaptchaSuccess,
-        });
+        const captchaContainer = document.getElementById('captcha-container');
+        if (captchaContainer) {
+            window.smartCaptcha.render(captchaContainer, {
+                sitekey: 'ysc1_hBWstkOuWJkV2PhLP3p4Y6c4Yg9PJh2KOsclXACWc0871987',
+                invisible: true,
+                callback: onCaptchaSuccess,
+            });
+        } else {
+            console.error('Элемент captcha-container не найден'); // Для отладки
+        }
     });
 }
 
@@ -94,10 +112,10 @@ function submit() {
 </script>
 
 <template>
-    <button @click="showModal = true"
+    <button @click="openModal"
         class="inline-flex text-black font-semibold bg-gray-100 border-0 mb-2 py-4 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Бесплатная
         консультация</button>
-    <Modal v-if="showModal" :show="showModal" @close="showModal = false" :max-width="'md'">
+    <Modal v-if="showModal" :show="showModal" @close="closeModal" :max-width="'md'">
         <div id="form" class="bg-white text-center text-white font-medium inset-x-0 w-full h-full overflow-auto">
             <form @submit.prevent="handleSubmit">
                 <div class="mx-auto bg-white flex flex-col gap-1 w-full h-auto">
