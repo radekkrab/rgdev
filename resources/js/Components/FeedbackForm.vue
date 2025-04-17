@@ -29,24 +29,30 @@ function closeModal() {
 
 function loadCaptcha() {
     const script = document.createElement('script');
-    script.src = 'https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction';
+    script.src = 'https://smartcaptcha.yandexcloud.net/captcha.js'; // Убираем параметры из URL
     script.defer = true;
-    document.head.appendChild(script);
-}
 
-function onloadFunction() {
-    console.log('Капча загружена'); // Для отладки
-
-    if (!window.smartCaptcha) {
-        console.error('SmartCaptcha не загружен'); // Для отладки
-        return;
+    // Добавляем обработчик события onload
+    script.onload = () => {
+        console.log('Капча загружена'); // Для отладки
+        if (!window.smartCaptcha) {
+            console.error('SmartCaptcha не загружен'); // Для отладки
+            return;
         }
 
-    window.smartCaptcha.render('captcha-container', {
-                sitekey: 'ysc1_hBWstkOuWJkV2PhLP3p4Y6c4Yg9PJh2KOsclXACWc0871987',
-                invisible: true,
-                callback: callback,
-            });
+        window.smartCaptcha.render('captcha-container', {
+            sitekey: 'ysc1_hBWstkOuWJkV2PhLP3p4Y6c4Yg9PJh2KOsclXACWc0871987',
+            invisible: true,
+            callback: callback,
+        });
+    };
+
+    // Добавляем обработчик события onerror
+    script.onerror = () => {
+        console.error('Ошибка загрузки скрипта капчи'); // Для отладки
+    };
+
+    document.head.appendChild(script);
 }
 
 function callback(captchaToken) {
