@@ -17,8 +17,9 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(YSmartCaptcha, {
-                siteKey: "ysc1_UGyu2VEAUNmKNkVxhCRglKu4uKRkePefKMDJB99g5406b6b9",
-                lang: "ru"
+                siteKey: "ysc1_hBWstkOuWJkV2PhLP3p4Y6c4Yg9PJh2KOsclXACWc0871987",
+                lang: "ru",
+                type: "invisible"
             })
             .mount(el);
     },
