@@ -49,9 +49,9 @@ function onloadFunction() {
             });
 }
 
-function callback(token) {
-    console.log('Капча пройдена, токен:', token); // Для отладки
-    token.value = token; // Сохраняем токен капчи
+function callback(captchaToken) {
+    console.log('Капча пройдена, токен:', captchaToken); // Для отладки
+    token.value = captchaToken; // Сохраняем токен капчи
     submit(); // Вызываем отправку формы после успешного прохождения капчи
 }
 
@@ -64,13 +64,16 @@ function handleSubmit() {
     }
 
     if (!window.smartCaptcha) {
+        console.error('SmartCaptcha не доступен');
         return;
     }
 
+    console.log('Запуск капчи');
     window.smartCaptcha.execute();
 }
 
 function submit() {
+    console.log('Отправка формы');
     form.processing = true;
     form.progress = { percentage: 0 };
 
