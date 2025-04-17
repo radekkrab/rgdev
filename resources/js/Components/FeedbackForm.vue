@@ -1,5 +1,5 @@
 <script setup>
-import { ref, nextTick } from 'vue';
+import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
 
@@ -19,9 +19,7 @@ const form = useForm({
 
 function openModal() {
     showModal.value = true;
-    nextTick(() => {
-        loadCaptcha(); // Загружаем капчу после открытия модального окна
-    });
+    loadCaptcha();
 }
 
 function closeModal() {
@@ -34,34 +32,26 @@ function loadCaptcha() {
     script.src = 'https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction';
     script.defer = true;
     document.head.appendChild(script);
-    // Устанавливаем функцию onloadFunction как глобальную
-    window.onloadFunction = onloadFunction;
 }
 
 function onloadFunction() {
     console.log('Капча загружена'); // Для отладки
-    nextTick(() => {
-        if (!window.smartCaptcha) {
-            console.error('SmartCaptcha не загружен'); // Для отладки
-            return;
+
+    if (!window.smartCaptcha) {
+        console.error('SmartCaptcha не загружен'); // Для отладки
+        return;
         }
 
-        const captchaContainer = document.getElementById('captcha-container');
-        if (captchaContainer) {
-            window.smartCaptcha.render(captchaContainer, {
+    window.smartCaptcha.render('captcha-container', {
                 sitekey: 'ysc1_hBWstkOuWJkV2PhLP3p4Y6c4Yg9PJh2KOsclXACWc0871987',
                 invisible: true,
-                callback: onCaptchaSuccess,
+                callback: callback,
             });
-        } else {
-            console.error('Элемент captcha-container не найден'); // Для отладки
-        }
-    });
 }
 
-function onCaptchaSuccess(captchaToken) {
-    console.log('Капча пройдена, токен:', captchaToken); // Для отладки
-    token.value = captchaToken; // Сохраняем токен капчи
+function callback(token) {
+    console.log('Капча пройдена, токен:', token); // Для отладки
+    token.value = token; // Сохраняем токен капчи
     submit(); // Вызываем отправку формы после успешного прохождения капчи
 }
 
@@ -73,10 +63,11 @@ function handleSubmit() {
         return;
     }
 
-    // Запускаем капчу
-    if (window.smartCaptcha) {
-        window.smartCaptcha.execute();
+    if (!window.smartCaptcha) {
+        return;
     }
+
+    window.smartCaptcha.execute();
 }
 
 function submit() {
