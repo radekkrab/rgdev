@@ -22,9 +22,11 @@ onMounted(() => {
     script.src = 'https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction';
     script.defer = true;
     document.head.appendChild(script);
+    window.onloadFunction = onloadFunction;
 });
 
 function onloadFunction() {
+    console.log('Капча загружена'); // Для отладки
     if (!window.smartCaptcha) {
         return;
     }
@@ -37,11 +39,13 @@ function onloadFunction() {
 }
 
 function onCaptchaSuccess(captchaToken) {
+    console.log('Капча пройдена, токен:', captchaToken); // Для отладки
     token.value = captchaToken; // Сохраняем токен капчи
     submit(); // Вызываем отправку формы после успешного прохождения капчи
 }
 
 function handleSubmit() {
+    console.log('handleSubmit вызван'); // Для отладки
     if (!token.value) {
         modal2Message.value = 'Пожалуйста, пройдите капчу.';
         showModal.value = true;
