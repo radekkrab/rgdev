@@ -30,16 +30,16 @@ function submit() {
         return;
     }
 
-    form.processing = true; 
+    form.processing = true;
     form.progress = { percentage: 0 };
 
     const interval = setInterval(() => {
         if (form.progress.percentage < 100) {
-            form.progress.percentage += 10; 
+            form.progress.percentage += 10;
         } else {
-            clearInterval(interval); 
-            form.processing = false; 
-            form.progress = null; 
+            clearInterval(interval);
+            form.processing = false;
+            form.progress = null;
         }
     }, 500);
     form.post('/send', {
@@ -59,7 +59,7 @@ function submit() {
 }
 
 function onCaptchaSuccess(captchaToken) {
-    token.value = captchaToken; 
+    token.value = captchaToken;
 }
 
 </script>
@@ -99,7 +99,7 @@ function onCaptchaSuccess(captchaToken) {
                             </textarea>
                         <div v-if="form.errors.message">{{ form.errors.message }}</div>
                     </div>
-                    <YSmartCaptcha v-model="token" @success="onCaptchaSuccess"/>
+                    <YSmartCaptcha v-model="token" @success="onCaptchaSuccess" type="invisible"/>
                     <div class="flex justify-center gap-1 items-center my-2 mx-4 text-gray-500">
                         <input type="checkbox" id="policy" class="w-8 h-8" required v-model="form.policy">
                         <p class="text-sm text-gray-500 text-justify">Нажимая кнопку «Отправить», я даю свое
