@@ -1,16 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useForm } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
-import Soglasie from '@/Components/Soglasie.vue';
-import Politica from '@/Components/Politica.vue';
 
-let showModal = ref(false);
-
-let showModal2 = ref(false);
-
-let modal2Message = ref('');
-
+const showModal = ref(false);
+const modal2Message = ref('');
 const token = ref('');
 
 const form = useForm({
@@ -21,15 +15,46 @@ const form = useForm({
     token: token.value,
     processing: false,
     progress: null,
-})
+});
 
-function submit() {
-    if (!token.value) {
-        modal2Message.value = 'Пожалуйста пройдите капчу.';
-        showModal2.value = true;
+onMounted(() => {
+    const script = document.createElement('script');
+    script.src = 'https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction';
+    script.defer = true;
+    document.head.appendChild(script);
+});
+
+function onloadFunction() {
+    if (!window.smartCaptcha) {
         return;
     }
 
+    window.smartCaptcha.render('captcha-container', {
+        sitekey: 'ysc1_hBWstkOuWJkV2PhLP3p4Y6c4Yg9PJh2KOsclXACWc0871987',
+        invisible: true,
+        callback: onCaptchaSuccess,
+    });
+}
+
+function onCaptchaSuccess(captchaToken) {
+    token.value = captchaToken; // Сохраняем токен капчи
+    submit(); // Вызываем отправку формы после успешного прохождения капчи
+}
+
+function handleSubmit() {
+    if (!token.value) {
+        modal2Message.value = 'Пожалуйста, пройдите капчу.';
+        showModal.value = true;
+        return;
+    }
+
+    // Запускаем капчу
+    if (window.smartCaptcha) {
+        window.smartCaptcha.execute();
+    }
+}
+
+function submit() {
     form.processing = true;
     form.progress = { percentage: 0 };
 
@@ -42,24 +67,21 @@ function submit() {
             form.progress = null;
         }
     }, 500);
+
     form.post('/send', {
         onSuccess: () => {
             form.reset();
             showModal.value = false;
             modal2Message.value = 'Спасибо за обращение! Мы свяжемся с вами в ближайшее время.';
-            showModal2.value = true;
+            showModal.value = true;
         },
         onError: (error) => {
             form.reset();
             showModal.value = false;
             modal2Message.value = 'Ошибка отправки формы: ' + error.message;
-            showModal2.value = true;
+            showModal.value = true;
         }
     });
-}
-
-function onCaptchaSuccess(captchaToken) {
-    token.value = captchaToken;
 }
 
 </script>
@@ -70,7 +92,7 @@ function onCaptchaSuccess(captchaToken) {
         консультация</button>
     <Modal v-if="showModal" :show="showModal" @close="showModal = false" :max-width="'md'">
         <div id="form" class="bg-white text-center text-white font-medium inset-x-0 w-full h-full overflow-auto">
-            <form @submit.prevent="submit">
+            <form @submit.prevent="handleSubmit">
                 <div class="mx-auto bg-white flex flex-col gap-1 w-full h-auto">
                     <p class="leading-tight mt-6 mb-2 text-gray-600 text-3xl mx-4">Опишите вопрос или просто
                         оставьте контакты для связи</p>
@@ -99,7 +121,7 @@ function onCaptchaSuccess(captchaToken) {
                             </textarea>
                         <div v-if="form.errors.message">{{ form.errors.message }}</div>
                     </div>
-                    <YSmartCaptcha v-model="token" @success="onCaptchaSuccess" type="invisible"/>
+                    <div id="captcha-container"></div>
                     <div class="flex justify-center gap-1 items-center my-2 mx-4 text-gray-500">
                         <input type="checkbox" id="policy" class="w-8 h-8" required v-model="form.policy">
                         <p class="text-sm text-gray-500 text-justify">Нажимая кнопку «Отправить», я даю свое
