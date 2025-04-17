@@ -1,6 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useForm } from '@inertiajs/vue3';
+import Modal from '@/Components/Modal.vue';
+import Soglasie from '@/Components/Soglasie.vue';
+import Politica from '@/Components/Politica.vue';
 
 const showModal = ref(false);
 const modalMessage = ref('');
@@ -147,8 +150,18 @@ const submitForm = () => {
                     <!-- Чекбокс согласия -->
                     <div class="flex justify-center gap-1 items-center my-2 mx-4 text-gray-500">
                         <input type="checkbox" id="policy" class="w-8 h-8" required v-model="form.policy">
-                        <p class="text-sm text-gray-500 text-justify">
-                            Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных данных...
+                        <p class="text-sm text-gray-500 text-justify">Нажимая кнопку «Отправить», я даю свое
+                            согласие на
+                            обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006
+                            года
+                            №152-ФЗ
+                            «О персональных данных» и <span
+                                class="cursor-pointer font-semibold text-blue-500">
+                                <Soglasie />
+                            </span>.
+                            Подробнее читайте в <span class="cursor-pointer font-semibold text-blue-500">
+                                <Politica class="text-blue-500" />
+                            </span>
                         </p>
                     </div>
 
