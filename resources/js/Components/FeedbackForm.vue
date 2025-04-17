@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
 
@@ -27,14 +27,17 @@ onMounted(() => {
 
 function onloadFunction() {
     console.log('Капча загружена'); // Для отладки
-    if (!window.smartCaptcha) {
-        return;
-    }
+    nextTick(() => {
+        if (!window.smartCaptcha) {
+            console.error('SmartCaptcha не загружен'); // Для отладки
+            return;
+        }
 
-    window.smartCaptcha.render('captcha-container', {
-        sitekey: 'ysc1_hBWstkOuWJkV2PhLP3p4Y6c4Yg9PJh2KOsclXACWc0871987',
-        invisible: true,
-        callback: onCaptchaSuccess,
+        window.smartCaptcha.render('captcha-container', {
+            sitekey: 'ysc1_hBWstkOuWJkV2PhLP3p4Y6c4Yg9PJh2KOsclXACWc0871987',
+            invisible: true,
+            callback: onCaptchaSuccess,
+        });
     });
 }
 
