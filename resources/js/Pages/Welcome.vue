@@ -88,9 +88,9 @@ function handleImageError() {
                                 </h1>
                                 <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Настройка видеонаблюдения
                                 </h1>
-                                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Создание сайтов и веб-приложений
+                                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Создание сайтов<br> и веб-приложений
                                 </h1>
-                                <div>
+                                <div class="self-stretch">
                                     <FeedbackForm />
                                 </div>
                             </div>
@@ -123,8 +123,7 @@ function handleImageError() {
                                     <li><a class="md:mr-5 hover:text-sky-500" href="#prices">Войти</a></li>
                                     <li><a class="md:mr-5 hover:text-sky-500" href="#contacts">Зарегистрироваться</a>
                                     </li>
-                                    <li><a class="md:mr-5 hover:text-sky-500" href="#getsite">Бесплатная
-                                            консультация</a>
+                                    <li><a class="md:mr-5 hover:text-sky-500" href="#getsite">Создать заявку</a>
                                     </li>
                                 </ul>
                             </div>
