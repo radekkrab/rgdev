@@ -27,26 +27,40 @@ const closeMenu = () => {
             <ul v-if="isOpen"
                 class="pointer-events-auto bg-black/80 text-center text-white text-2xl flex flex-col gap-4 items-center font-medium fixed z-10 inset-x-0 inset-y-0 w-full h-full pt-40">
                 <li @click="closeMenu">
-                    <Link :href="'/rg/login'"
+                    <Link :href="route('market')"
                         class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
                         style="box-shadow: 0 0 3px 2px #0ea5e9;">
-                    Войти
+                    Магазин
                     </Link>
                 </li>
-                <li @click="closeMenu">
-                    <Link :href="route('register')"
-                        class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md  py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
-                        style="box-shadow: 0 0 3px 2px #0ea5e9;">
-                    Зарегистрироваться
+                <template v-if="$page.props.auth.user">
+                    <Link :href="route('market')"
+                          class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
+                          style="box-shadow: 0 0 3px 2px #0ea5e9;">
+                        Личный кабинет<br> {{ $page.props.auth.user.name }}
                     </Link>
-                </li>
-                <li @click="closeMenu">
-                    <Link :href="`/topics`"
-                        class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
-                        style="box-shadow: 0 0 3px 2px #0ea5e9;">
-                    IT заметки
+                    <Link :href="route('logout')"
+                          class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md  py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
+                          style="box-shadow: 0 0 3px 2px #0ea5e9;">
+                        Выйти
                     </Link>
-                </li>
+                </template>
+                <template v-else>
+                    <li @click="closeMenu">
+                        <Link :href="route('login')"
+                              class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
+                              style="box-shadow: 0 0 3px 2px #0ea5e9;">
+                            Войти
+                        </Link>
+                    </li>
+                    <li @click="closeMenu">
+                        <Link :href="route('register')"
+                              class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md  py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
+                              style="box-shadow: 0 0 3px 2px #0ea5e9;">
+                            Зарегистрироваться
+                        </Link>
+                    </li>
+                </template>
             </ul>
         </Transition>
     </div>
