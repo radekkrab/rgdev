@@ -86,9 +86,8 @@ const submitForm = () => {
     form.post('/send', {
         preserveScroll: true,
         onSuccess: () => {
+            closeModal();
             modalMessage.value = 'Спасибо за обращение! Мы свяжемся с вами в ближайшее время.';
-            form.reset();
-            form.token = '';
         },
         onError: (errors) => {
             modalMessage.value = errors.message || 'Произошла ошибка при отправке формы';
@@ -103,21 +102,21 @@ const submitForm = () => {
 
 <template>
     <button @click="openModal"
-            class="inline-flex text-black font-semibold bg-gray-100 border-0 mb-2 py-4 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-        Бесплатная консультация
+            class="text-black font-semibold bg-gray-100 border-0 mb-2 py-4 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+        Создать заявку
     </button>
 
     <Modal :show="showModal" @close="closeModal" :max-width="'md'">
         <div class="bg-white text-center text-white font-medium inset-x-0 w-full h-full overflow-auto">
             <form @submit.prevent="handleSubmit">
                 <div class="mx-auto bg-white flex flex-col gap-1 w-full h-auto">
-                    <p class="leading-tight mt-6 mb-2 text-gray-600 text-3xl mx-4">
-                        Опишите вопрос или просто оставьте контакты для связи
+                    <div class="text-black ml-auto mt-1 text-xl w-8" @click="closeModal">X</div>
+                    <p class="leading-tight mb-2 text-gray-600 text-3xl mx-4">
+                        Опишите проблему или интересующий вас вопрос
                     </p>
 
                     <!-- Поля формы -->
                     <div class="relative mb-2 mx-4">
-                        <label for="name" class="leading-7 text-xl text-gray-600">Как к Вам обращаться?</label>
                         <input type="text" id="name" pattern="[A-Za-zА-Яа-яЁё\s]+"
                                title="Имя должно содержать только буквы и пробелы" placeholder="Имя" required
                                v-model="form.name"
@@ -126,7 +125,6 @@ const submitForm = () => {
                     </div>
 
                     <div class="relative mb-2 mx-4">
-                        <label for="tel" class="leading-7 text-xl text-gray-600">Ваш номер телефона:</label>
                         <input type="tel" id="tel" placeholder="Телефон" pattern="((8\d{10})|(\+7\d{10}))"
                                title="Пожалуйста, введите 11 цифр, начинающихся с 8, или 11 цифр, начинающихся с +7."
                                required v-model="form.phone"
@@ -135,8 +133,7 @@ const submitForm = () => {
                     </div>
 
                     <div class="relative mb-2 mx-4">
-                        <label for="message" class="leading-7 text-xl text-gray-600">Сообщение:</label>
-                        <textarea id="message" pattern="[A-Za-zА-Яа-я0-9,.:]*"
+                        <textarea id="message" pattern="[A-Za-zА-Яа-я0-9,.:]*" placeholder="Сообщение"
                                   title="Текст должен содержать только буквы, цифры и символы . , :" required
                                   v-model="form.message"
                                   class="invalid:border-red-600 w-full h-24 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">
