@@ -34,4 +34,8 @@ Route::get('/topics', [TopicController::class, 'index'])->name('topics');
 Route::get('/topics/{topic}', [TopicController::class, 'show']);
 Route::get('/articles/{article}', [ArticleController::class, 'show']);
 
+Route::get('/market', function () {
+    return Inertia::render('Market');
+})->name('market');
+
 require __DIR__.'/auth.php';
