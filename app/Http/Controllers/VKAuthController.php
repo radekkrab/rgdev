@@ -36,7 +36,7 @@ class VKAuthController extends Controller
     }
 
     // Перенаправление пользователя после успешной авторизации
-    return redirect()->route('dashboard');
+    return redirect()->route('welcome');
 }
 
 }
