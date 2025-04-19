@@ -5,6 +5,9 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\VKAuthController;
+use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -30,12 +33,17 @@ Route::middleware('auth')->group(function () {
 Route::get('/auth/vk', [VKAuthController::class, 'redirectToProvider'])->name('vk.auth');
 Route::get('/auth/vk/callback', [VKAuthController::class, 'handleProviderCallback']);
 
-Route::get('/topics', [TopicController::class, 'index'])->name('topics');
-Route::get('/topics/{topic}', [TopicController::class, 'show']);
-Route::get('/articles/{article}', [ArticleController::class, 'show']);
+Route::get('/products', [ProductController::class, 'index'])->name('products');
 
-Route::get('/market', function () {
-    return Inertia::render('Market');
-})->name('market');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+    Route::post('/payment/create', [PaymentController::class, 'createPayment'])->name('payment.create');
+    Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');
+    Route::get('/download/{product}', [DownloadController::class, 'download'])->name('download');
+});
+
+Route::post('/payment/webhook', [PaymentController::class, 'callback'])
+    ->name('payment.webhook')
+    ->withoutMiddleware(['csrf']);
 
 require __DIR__.'/auth.php';
