@@ -34,12 +34,12 @@ const closeMenu = () => {
                     </Link>
                 </li>
                 <template v-if="$page.props.auth.user">
-                    <Link :href="route('market')"
+                    <Link :href="route('products')"
                           class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
                           style="box-shadow: 0 0 3px 2px #0ea5e9;">
                         Личный кабинет<br> {{ $page.props.auth.user.name }}
                     </Link>
-                    <Link :href="route('logout')"
+                    <Link :href="route('logout')" method="post"
                           class="inline-flex text-white bg-white bg-opacity-5 backdrop-blur-sm shadow-md  py-2 w-72 justify-center focus:outline-none hover:bg-black rounded"
                           style="box-shadow: 0 0 3px 2px #0ea5e9;">
                         Выйти

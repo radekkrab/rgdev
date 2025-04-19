@@ -49,7 +49,7 @@ function handleImageError() {
                         </h1>
                     </div>
                     <nav v-if="canLogin" class="hidden flex-1 gap-2 justify-end lg:flex">
-                        <Link :href="route('market')"
+                        <Link :href="route('products')"
                               class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] border-2 border-sky-700"
                               style="box-shadow: 0 0 3px 2px #0ea5e9;">
                             Магазин
